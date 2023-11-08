@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Anagram
 {
-    static internal class StringConverter
+    static public class LineConverter
     {
         /// <summary>
         /// Returns all ASCII alphabetic characters in uppercase
@@ -78,7 +78,7 @@ namespace Anagram
             }
 
             string output = "";
-            string alphabeticSymbols = StringConverter.ASCIILowercase() + StringConverter.ASCIIUppercase();
+            string alphabeticSymbols = LineConverter.ASCIILowercase() + LineConverter.ASCIIUppercase();
 
             for (int i = 0; i < input.Length; i++)
             {
@@ -104,7 +104,7 @@ namespace Anagram
             }
 
             string output = "";
-            string alphabeticSymbols = StringConverter.ASCIILowercase() + StringConverter.ASCIIUppercase();
+            string alphabeticSymbols = LineConverter.ASCIILowercase() + LineConverter.ASCIIUppercase();
 
             for (int i = 0; i < input.Length; i++)
             {
@@ -128,12 +128,12 @@ namespace Anagram
                 throw new ArgumentNullException("input");
             }
 
-            string alphabeticSymbols = StringConverter.ASCIILowercase() + StringConverter.ASCIIUppercase();
+            string alphabeticSymbols = LineConverter.ASCIILowercase() + LineConverter.ASCIIUppercase();
             string output = "";
 
-            string onlyNotAlphabeticSymbols = StringConverter.GetNotAlphabeticSymbolsFromString(input);
-            string onlyAlphabeticSymbols = StringConverter.GetAlphabeticSymbolsFromString(input);
-            string onlyAlphabeticSymbolsReverse = StringConverter.Reverse(onlyAlphabeticSymbols);
+            string onlyNotAlphabeticSymbols = LineConverter.GetNotAlphabeticSymbolsFromString(input);
+            string onlyAlphabeticSymbols = LineConverter.GetAlphabeticSymbolsFromString(input);
+            string onlyAlphabeticSymbolsReverse = LineConverter.Reverse(onlyAlphabeticSymbols);
 
             int indexAlp = 0;
             int indexNotAlp = 0;

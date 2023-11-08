@@ -6,7 +6,7 @@
         {
             Console.WriteLine("Input: ");
             string line = Console.ReadLine();
-            Console.WriteLine(StringConverter.Anagram(line));
+            Console.WriteLine(LineConverter.Anagram(line));
         }
     }
 }
