@@ -10,38 +10,6 @@ namespace Anagram
     static public class LineConverter
     {
         /// <summary>
-        /// Returns all ASCII alphabetic characters in uppercase
-        /// </summary>
-        /// <returns>string</returns>
-        static public string ASCIIUppercase()
-        {
-            string output = "";
-
-            for (char symbol = 'A'; symbol <= 'Z'; symbol++)
-            {
-                output += symbol;
-            }
-
-            return output;
-        }
-
-        /// <summary>
-        /// Returns all ASCII alphabetic characters in lowercase
-        /// </summary>
-        /// <returns>string</returns>
-        static public string ASCIILowercase()
-        {
-            string output = "";
-
-            for (char symbol = 'a'; symbol <= 'z'; symbol++)
-            {
-                output += symbol;
-            }
-
-            return output;
-        }
-
-        /// <summary>
         /// Reverses the string
         /// </summary>
         /// <param name="input"></param>
@@ -54,18 +22,18 @@ namespace Anagram
                 throw new ArgumentNullException("input");
             }
 
-            string output = "";
+            StringBuilder output = new StringBuilder();
 
-            for(int i = input.Length - 1; i > -1; i--)
+            for (int i = input.Length - 1; i > -1; i--)
             {
-                output += (input[i]);
+                output.Append(input[i]);
             }
 
-            return output;
+            return output.ToString();
         }
 
         /// <summary>
-        /// Extracts all non-alphabetic ASCII characters from a string
+        /// Extracts all non-alphabetic symbols from a string
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -77,21 +45,18 @@ namespace Anagram
                 throw new ArgumentNullException("input");
             }
 
-            string output = "";
-            string alphabeticSymbols = LineConverter.ASCIILowercase() + LineConverter.ASCIIUppercase();
+            StringBuilder output = new StringBuilder();
 
             for (int i = 0; i < input.Length; i++)
             {
-                if (alphabeticSymbols.Contains(input[i]))
-                    continue;
-                else
-                    output += input[i];
+                if (!char.IsLetter(input[i]))
+                    output.Append(input[i]);
             }
 
-            return output;
+            return output.ToString();
         }
         /// <summary>
-        /// Extracts all ASCII alphabetic characters from a string
+        /// Extracts all alphabetic symbols from a string
         /// </summary>
         /// <param name="input"></param>
         /// <returns>string</returns>
@@ -103,56 +68,54 @@ namespace Anagram
                 throw new ArgumentNullException("input");
             }
 
-            string output = "";
-            string alphabeticSymbols = LineConverter.ASCIILowercase() + LineConverter.ASCIIUppercase();
+            StringBuilder output = new StringBuilder(); 
 
             for (int i = 0; i < input.Length; i++)
             {
-                if (alphabeticSymbols.Contains(input[i]))
-                    output += input[i];
+                if (char.IsLetter(input[i]))
+                    output.Append(input[i]);
             }
 
-            return output;
+            return output.ToString();
         }
 
         /// <summary>
-        /// Returns a string in which non-alphabetic characters remain in their places, and alphabetic characters are reversed
+        /// Returns a string in which non-alphabetic symbols remain in their places, and alphabetic symbols are reversed
         /// </summary>
         /// <param name="input"></param>
         /// <returns>string</returns>
         /// <exception cref="ArgumentNullException"></exception>
-        static public string Anagram(string input)
+        static public string AnagramWord(string input)
         {
             if (input == null)
             {
                 throw new ArgumentNullException("input");
             }
 
-            string alphabeticSymbols = LineConverter.ASCIILowercase() + LineConverter.ASCIIUppercase();
-            string output = "";
+            StringBuilder output = new StringBuilder();
 
-            string onlyNotAlphabeticSymbols = LineConverter.GetNotAlphabeticSymbolsFromString(input);
-            string onlyAlphabeticSymbols = LineConverter.GetAlphabeticSymbolsFromString(input);
-            string onlyAlphabeticSymbolsReverse = LineConverter.Reverse(onlyAlphabeticSymbols);
+            string onlyNotAlphabeticSymbols = GetNotAlphabeticSymbolsFromString(input);
+            string onlyAlphabeticSymbols = GetAlphabeticSymbolsFromString(input);
+            string onlyAlphabeticSymbolsReverse = Reverse(onlyAlphabeticSymbols);
 
             int indexAlp = 0;
             int indexNotAlp = 0;
 
             for (int i = 0; i < input.Length; i++)
             {
-                if (alphabeticSymbols.Contains(input[i]))
+                if (char.IsLetter(input[i]))
                 {
-                    output += onlyAlphabeticSymbolsReverse[indexAlp];
+                    output.Append(onlyAlphabeticSymbolsReverse[indexAlp]);
                     indexAlp++;
                 }
                 else
                 {
-                    output += onlyNotAlphabeticSymbols[indexNotAlp];
+                    output.Append(onlyNotAlphabeticSymbols[indexNotAlp]);
                     indexNotAlp++;
                 }
             }
 
-            return output;
+            return output.ToString();
         }
     }
 }

@@ -6,10 +6,10 @@ namespace Anagram.Tests
     public class StringConcerterTests
     {
         [TestMethod]
-        public void Reverse_123456_654321returned()
+        public void Reverse_WithValidInput_ShouldReturnReversedString()
         {
-            string input = "123456";
-            string expected = "654321";
+            string input = "123456Ab";
+            string expected = "bA654321";
 
             string actual = LineConverter.Reverse(input);
 
@@ -17,7 +17,7 @@ namespace Anagram.Tests
         }
 
         [TestMethod]
-        public void GetNotAlphabeticSymbolsFromString_a1Bb21CcC313dDdD4324_1213134324returned()
+        public void GetNotAlphabeticSymbolsFromString_WithValidInput_ShouldReturnNotAlphabeticSymbols()
         {
             string input = "a1Bb21CcC313dDdD4324";
             string expected = "1213134324";
@@ -28,7 +28,7 @@ namespace Anagram.Tests
         }
 
         [TestMethod]
-        public void GetAlphabeticSymbolsFromString_a1Bb21CcC313dDdD4324_aBbCcCdDdDreturned()
+        public void GetAlphabeticSymbolsFromString_WithValidInput_ShouldReturnAlphabeticSymbols()
         {
             string input = "a1Bb21CcC313dDdD4324";
             string expected = "aBbCcCdDdD";
@@ -39,12 +39,12 @@ namespace Anagram.Tests
         }
 
         [TestMethod]
-        public void Anagram_a1Bb21CcC313dDdD4324_D1dD21dCc313CbBa4324returned()
+        public void AnagramWord_WithValidInput_ShouldReturnExpectedValue()
         {
             string input = "a1Bb21CcC313dDdD4324";
             string expected = "D1dD21dCc313CbBa4324";
 
-            string actual = LineConverter.Anagram(input);
+            string actual = LineConverter.AnagramWord(input);
 
             Assert.AreEqual(expected, actual);
         }
