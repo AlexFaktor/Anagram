@@ -48,5 +48,27 @@ namespace Anagram.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void SeparateWordsWithSpaces_WithValidInput_ShouldReturnExpectedValue()
+        {
+            string input = " word1  , 12! d";
+            string[] expected = { " ", "word1", "  ", ",", " ", "12!", " ", "d" };
+
+            string[] actual = LineConverter.SeparateWordsWithSpaces(input);
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Anagram_WithValidInput_ShouldReturnExpectedValue()
+        {
+            string input    = "  a1bcd    efg!h";
+            string expected = "  d1cba    hgf!e";
+
+            string actual = LineConverter.Anagram(input);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

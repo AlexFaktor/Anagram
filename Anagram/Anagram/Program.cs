@@ -1,4 +1,6 @@
-﻿namespace Anagram
+﻿using System.Text.RegularExpressions;
+
+namespace Anagram
 {
     internal class Program
     {
@@ -6,7 +8,7 @@
         {
             Console.WriteLine("Input: ");
             string line = Console.ReadLine();
-            Console.WriteLine(LineConverter.AnagramWord(line));
+            Console.WriteLine(LineConverter.Anagram(line));
         }
     }
 }

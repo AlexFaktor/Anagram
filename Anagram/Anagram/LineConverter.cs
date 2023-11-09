@@ -1,9 +1,13 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Anagram
 {
@@ -117,5 +121,58 @@ namespace Anagram
 
             return output.ToString();
         }
+
+        /// <summary>
+        /// This method uses regular expressions to separate words with spaces
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns>an array of strings, where the word is the 1st element, the spaces between the words are the 2nd element...</returns>
+        static public string[] SeparateWordsWithSpaces(string input)
+        {
+            string[] arrRegax = Regex.Split(input, @"(\s+)|(\S+)");
+
+            List<string> result = new List<string>();
+
+            // This is necessary to remove "" from the beginning and end of the string array
+            for (int i = 0; i < arrRegax.Length; i++)
+            {
+                if (arrRegax[i] != "")
+                    result.Add(arrRegax[i]);
+            }
+
+            return result.ToArray();
+        }
+
+        /// <summary>
+        /// Works like AnagramWord but separately for each word
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns>string</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        static public string Anagram(string input)
+        {
+            if (input == null)
+            {
+                throw new ArgumentNullException("input");
+            }
+
+            StringBuilder output = new StringBuilder();
+
+            // Transforming the string for use
+            string[] arrInput = SeparateWordsWithSpaces(input);
+
+            for (int i = 0; i < arrInput.Length; i++)
+            {
+                arrInput[i] = AnagramWord(arrInput[i]);
+            }
+
+            foreach (string str in arrInput)
+            {
+                output.Append(str); 
+            }
+
+            return output.ToString();
+        }
+
     }
 }
